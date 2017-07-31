@@ -145,7 +145,7 @@ module.exports = function(options) {
 		name = namespace+name;
 
 		var agent =  options.https ? new https.Agent({maxSockets:workers}) : new http.Agent({maxSockets:workers}); // long poll should use its own agent
-		var req = request.defaults({agent:agent});
+		var req = request.defaults({agent:agent, timeout: 10000});
 
 		range(workers).forEach(function() {
 			var next = function() {
